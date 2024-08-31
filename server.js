@@ -2,22 +2,26 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const path = require('path');
 const app = express();
+// Server configuration in server.js
+const path = require('path');
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 // Middleware
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('public'));  // Serve static files from the 'public' folder
 
 // MongoDB Connection
-const MONGO_URI = process.env.MONGO_URI || "mongodb+srv://codingbits:Adarsh%40123@codingbits.h0231.mongodb.net/dbname?retryWrites=true&w=majority&appName=CodingBits";
-mongoose.connect(MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-}).then(() => console.log("Connected to database successfully"))
-  .catch((error) => console.log("Could not connect to database!", error));
+try {
+  mongoose.connect("mongodb+srv://codingbits:Adarsh@123@codingbits.h0231.mongodb.net/?retryWrites=true&w=majority&appName=CodingBits");
+  console.log("Connected to database successfully");
+} catch (error) {
+  console.log(error);
+  console.log("Could not connect to database!");
+}
 
 // Define Schema
 const userSchema = new mongoose.Schema({
@@ -49,7 +53,7 @@ app.post("/submit-details", async (req, res) => {
 
 // Serve the index.html file at the root URL
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+    res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 // Start Server
