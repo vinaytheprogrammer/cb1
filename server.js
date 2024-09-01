@@ -1,19 +1,21 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
-const cors = require("cors");
+const cors = require("cors");  // Add CORS to handle cross-origin requests
 const app = express();
-// Server configuration in server.js
 const path = require('path');
-app.use(express.static(path.join(__dirname, 'public')));
-
 
 // Middleware
-app.use(cors());
+app.use(cors());  // Enable CORS for all routes
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static('public'));  // Serve static files from the 'public' folder
+// Serve static files from the 'public' directory
+app.use(express.static(path.join(__dirname, 'public')));
 
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 // MongoDB Connection
 try {
   mongoose.connect("mongodb+srv://codingbits:Adarsh%40123@codingbits.h0231.mongodb.net/?retryWrites=true&w=majority&appName=CodingBits");
@@ -49,11 +51,6 @@ app.post("/submit-details", async (req, res) => {
     console.error(error);
     res.status(400).send("Error saving user details");
   }
-});
-
-// Serve the index.html file at the root URL
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 // Start Server
