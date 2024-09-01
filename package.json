@@ -1,7 +1,7 @@
 {
-  "name": "aapke-app-ka-naam",
+  "name": "Coding Bits",
   "version": "1.0.0",
-  "description": "App ka short description",
+  "description": "Success Amplified",
   "main": "server.js",
   "dependencies": {
     "axios": "^1.7.4",
@@ -11,10 +11,10 @@
     "mongoose": "^8.5.3"
   },
   "scripts": {
-    "start": "node server.js"  // Yeh line Azure ko batati hai ki app ko kaise start karna hai
+    "start": "node server.js" 
   },
   "engines": {
-    "node": ">=14.0.0"  // Yeh optional hai, par yeh batata hai ki app kis version ka Node.js use karega
+    "node": ">=14.0.0"  
   },
   "author": "Adarsh Kumar Pandey",
   "license": "MIT"
