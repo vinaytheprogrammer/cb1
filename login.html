@@ -206,7 +206,7 @@
                     return;
                 }
 
-                const response = await axios.post('https://codingbits.in/login.html', formObject);
+                const response = await axios.post('http://localhost:3001/submit-details', formObject);
 
                 if (response.status === 201) {
                     alert('User details saved successfully');

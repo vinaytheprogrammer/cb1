@@ -1,4 +1,4 @@
-(async function ($) {
+(function ($) {
     "use strict";
 
     // Spinner
@@ -81,29 +81,6 @@ if ('serviceWorker' in navigator) {
         $('html, body').animate({scrollTop: 0}, 1500, 'easeInOutExpo');
         return false;
     });
-
-    const cors = require("cors");
-   app.use(cors({
-     origin: "*", // or specify your front-end URL if you want to restrict access
-     methods: "GET,POST,PUT,DELETE",
-     allowedHeaders: "Content-Type"
-   }));
-
-
-   const response = await axios.post('https://codingbits.in/', formObject);
-
-
-   app.post("/submit-details", async (req, res) => {
-    try {
-      const user = new User(req.body);
-      await user.save();
-      res.status(201).send("User details saved successfully");
-    } catch (error) {
-      console.error('Error saving user details:', error);
-      res.status(400).send("Error saving user details");
-    }
-  });
-
 
 
     // Header carousel
