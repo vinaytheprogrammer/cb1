@@ -16,7 +16,7 @@ app.use(express.static('public'));  // Serve static files from the 'public' fold
 
 // MongoDB Connection
 try {
-  mongoose.connect("mongodb+srv://codingbits:Adarsh@123@codingbits.h0231.mongodb.net/?retryWrites=true&w=majority&appName=CodingBits");
+  mongoose.connect("mongodb+srv://codingbits:Adarsh%40123@codingbits.h0231.mongodb.net/?retryWrites=true&w=majority&appName=CodingBits");
   console.log("Connected to database successfully");
 } catch (error) {
   console.log(error);
