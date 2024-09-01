@@ -206,7 +206,7 @@
                     return;
                 }
 
-                const response = await axios.post('codingbits.azurewebsites.net', formObject);
+                const response = await axios.post('https://codingbits.in/login.html', formObject);
 
                 if (response.status === 201) {
                     alert('User details saved successfully');
