@@ -1,9 +1,21 @@
 {
+  "name": "aapke-app-ka-naam",
+  "version": "1.0.0",
+  "description": "App ka short description",
+  "main": "server.js",
   "dependencies": {
     "axios": "^1.7.4",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "express": "^4.19.2",
     "mongoose": "^8.5.3"
-  }
+  },
+  "scripts": {
+    "start": "node server.js"  // Yeh line Azure ko batati hai ki app ko kaise start karna hai
+  },
+  "engines": {
+    "node": ">=14.0.0"  // Yeh optional hai, par yeh batata hai ki app kis version ka Node.js use karega
+  },
+  "author": "Adarsh Kumar Pandey",
+  "license": "MIT"
 }
