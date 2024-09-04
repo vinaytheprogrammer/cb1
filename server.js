@@ -55,6 +55,4 @@ app.post("/submit-details", async (req, res) => {
 
 // Start Server
 const PORT = process.env.PORT || 3001;
-app.listen(port, () => {
-  console.log(`Server listening at https://codingbits.azurewebsites.net/:${port}`);
-});
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

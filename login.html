@@ -16,13 +16,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 100vh;
-            background-color: #f8f9fa;
+            /* height: 100vh; Ensure the form is centered vertically */
         }
 
         .container {
             max-width: 500px;
-            margin: 20px auto;
+            margin: 0 auto;
             padding: 20px;
         }
 
@@ -112,7 +111,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="phone" class="form-label">Phone</label>
-                    <input type="text" class="form-control" id="phone" name="phone" placeholder="1234567890" required>
+                    <input type="text" class="form-control" id="phone" name="phone" placeholder="123-456-7890" required>
                 </div>
                 <div class="mb-3">
                     <label for="address" class="form-label">Address</label>
@@ -134,8 +133,8 @@
                         required>
                 </div>
                 <div class="mb-3">
-                    <label for="linkedin_id" class="form-label">LinkedIn Profile URL</label>
-                    <input type="url" class="form-control" id="linkedin_id" name="linkedin_id"
+                    <label for="linkedin_id" class="form-label">LinkedIn ID</label>
+                    <input type="text" class="form-control" id="linkedin_id" name="linkedin_id"
                         placeholder="Your LinkedIn Profile">
                 </div>
                 <div class="mb-3">
@@ -176,16 +175,20 @@
             try {
                 const form = event.target;
                 const formData = new FormData(form);
+                // console.log('Form element:', form);
+                // console.log('Form data:', formData);
 
                 // Convert FormData to JSON object
                 const formObject = {};
                 formData.forEach((value, key) => {
-                    formObject[key] = value.trim();
+                    formObject[key] = value;
                 });
 
-                // Validation for email, phone, and LinkedIn Profile URL
+                // console.log('Form object:', formObject);
+
+                // Validation for email, phone, and LinkedIn ID
                 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                const phonePattern = /^\d{10}$/;
+                const phonePattern = /^\d{3}\d{3}\d{4}$/;
                 const linkedinPattern = /^https:\/\/(www\.)?linkedin\.com\/.+$/;
 
                 if (!emailPattern.test(formObject.email_id)) {
@@ -194,7 +197,7 @@
                 }
 
                 if (!phonePattern.test(formObject.phone)) {
-                    alert('Please enter a valid phone number in the format 1234567890.');
+                    alert('Please enter a valid phone number in the format 123-456-7890.');
                     return;
                 }
 
@@ -203,13 +206,13 @@
                     return;
                 }
 
-                const response = await axios.post('https://codingbits.azurewebsites.net/submit-details', formObject);
+                const response = await axios.post('http://localhost:3001/submit-details', formObject);
 
                 if (response.status === 201) {
                     alert('User details saved successfully');
-                    window.location.href = 'success.html';  // Redirect to success page
+                    window.location.href = 'success.html';  // Redirect to the home page
                 } else {
-                    alert('There was an error saving your details. Please try again later.');
+                    alert('There was an error connecting to the server. Please try again later.');
                 }
             } catch (error) {
                 console.error('Error:', error);
