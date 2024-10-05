@@ -6,14 +6,7 @@ const app = express();
 const path = require('path');
 
 // Middleware
-// app.use(cors());  // Enable CORS for all routes
-const corsOptions = {
-  origin: 'https://codingbits.azurewebsites.net/',  // Update with your frontend URL
-  optionsSuccessStatus: 200
-};
-
-app.use(cors(corsOptions));
-
+app.use(cors());  // Enable CORS for all routes
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static('public'));  // Serve static files from the 'public' folder
@@ -59,7 +52,9 @@ app.post("/submit-details", async (req, res) => {
     res.status(400).send("Error saving user details");
   }
 });
-
+app.get("/submit-details", (req, res) => {
+  res.send("GET request to /submit-details is working. The server is connected!");
+});
 // Start Server
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
