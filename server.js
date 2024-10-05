@@ -6,7 +6,14 @@ const app = express();
 const path = require('path');
 
 // Middleware
-app.use(cors());  // Enable CORS for all routes
+// app.use(cors());  // Enable CORS for all routes
+const corsOptions = {
+  origin: 'https://codingbits.azurewebsites.net/',  // Update with your frontend URL
+  optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static('public'));  // Serve static files from the 'public' folder
