@@ -14,7 +14,7 @@ app.use(express.static('public'));  // Serve static files from the 'public' fold
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', ''));
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 // MongoDB Connection
 try {
